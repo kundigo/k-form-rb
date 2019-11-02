@@ -26,7 +26,7 @@ Add the following line to `Gemfile`:
 
 ```ruby
 gem "k-form-rb", 
-     :git => "https://kundigo-ci:2381bb4546b420a55d62592192be6e65c201bf06@github.com/kundigo/k-form-js.git#master",
+     :git => "https://kundigo-ci:2381bb4546b420a55d62592192be6e65c201bf06@github.com/kundigo/k-form-rb.git",
      :branch => 'master'
 ```
 
