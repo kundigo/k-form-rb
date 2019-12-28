@@ -30,7 +30,12 @@ gem "k-form-rb",
      :branch => 'master'
 ```
 
-Run `bundle install` on the terminal.
+Run `bundle install` in the terminal.
+
+And then run `bundle exec rails k_form_rb:install` in the terminal. This command will
+
+* add the glue code between stimulus and vuejs forms
+* add [k-form-js](https://github.com/kundigo/k-form-js) to `package.json`
 
 # Testing
 
