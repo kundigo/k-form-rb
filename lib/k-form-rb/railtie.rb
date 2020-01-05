@@ -9,7 +9,7 @@ module KFormRb
     end
 
     initializer "k_form_rb.errors_helper" do
-      module ActiveModel
+      ActiveSupport.on_load :active_model do
         class Errors
           prepend KFormRb::Errors::FullMessage
           prepend KFormRb::Errors::ToBuilder
