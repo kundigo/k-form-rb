@@ -14,6 +14,8 @@ module KFormRb
           prepend KFormRb::Errors::FullMessage
           prepend KFormRb::Errors::ToBuilder
         end
+
+        ActiveRecord::Type.register(:bool, KFormRb::Types::BoolType)
       end
     end
 
