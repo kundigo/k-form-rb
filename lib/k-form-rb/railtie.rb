@@ -1,4 +1,6 @@
+require 'k-form-rb/concerns'
 require "k-form-rb/form_helper"
+require 'k-form-rb/types'
 
 module KFormRb
   class Railtie < Rails::Railtie
