@@ -8,6 +8,15 @@ module KFormRb
       end
     end
 
+    initializer "k_form_rb.errors_helper" do
+      module ActiveModel
+        class Errors
+          prepend KFormRb::Errors::FullMessage
+          prepend KFormRb::Errors::ToBuilder
+        end
+      end
+    end
+
     rake_tasks do
       path = File.expand_path(__dir__)
       Dir.glob("#{path}/tasks/**/*.rake").each { |f| load f }
