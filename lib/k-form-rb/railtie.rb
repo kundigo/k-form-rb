@@ -19,7 +19,7 @@ module KFormRb
 
         ActiveRecord::Type.register(:bool, KFormRb::Types::BoolType)
 
-        ActiveRecord::Base.class_eval do
+        ApplicationModel.class_eval do
           include KFormRb::Concerns::ValidateWithoutSaveConcern
         end
       end
