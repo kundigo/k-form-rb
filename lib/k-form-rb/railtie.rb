@@ -12,7 +12,10 @@ module KFormRb
 
     initializer "k_form_rb.errors_helper" do
       ActiveSupport.on_load :active_record do
-        self.include KFormRb::Concerns::ValidateWithoutSaveConcern
+
+        ::ApplicationRecord.class_eval do
+          include KFormRb::Concerns::ValidateWithoutSaveConcern
+        end
 
         ActiveModel::Errors.class_eval do
           prepend KFormRb::Errors::FullMessage
