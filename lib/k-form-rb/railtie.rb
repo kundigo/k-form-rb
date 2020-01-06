@@ -12,16 +12,18 @@ module KFormRb
 
     initializer "k_form_rb.errors_helper" do
       ActiveSupport.on_load :active_record do
-        ActiveRecord::Type.register(:bool, KFormRb::Types::BoolType)
 
-        ::ApplicationRecord.class_eval do
-          include KFormRb::Concerns::ValidateWithoutSaveConcern
-        end
+        # does not work every time => TODO: investigate when we have end to end tests on forms
+        # ApplicationRecord.class_eval do
+        #   include KFormRb::Concerns::ValidateWithoutSaveConcern
+        # end
 
         ActiveModel::Errors.class_eval do
           prepend KFormRb::Errors::FullMessage
           prepend KFormRb::Errors::ToBuilder
         end
+
+        ActiveRecord::Type.register(:bool, KFormRb::Types::BoolType)
       end
     end
 
