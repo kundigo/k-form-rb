@@ -64,5 +64,15 @@ module KFormRb
       result.gsub!( '/>', " unchecked_value=\"#{unchecked_value}\"></k-check_box>")
       result.html_safe
     end
+
+    # no-rspec
+    def tag_name(method)
+      "#{@object_name}[#{method}]"
+    end
+
+    # no-rspec
+    def tag_id(method)
+      @template.send(:sanitize_to_id, tag_name(method))
+    end
   end
 end
