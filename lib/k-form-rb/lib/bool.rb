@@ -8,12 +8,10 @@ module KFormRb
       def self.to_bool(raw_value)
         if TRUTHIES.include?(raw_value)
           true
-        elsif raw_value.nil?
-          nil
-        elsif raw_value.is_a?(String) && raw_value.blank?
-          nil
-        else
+        elsif FALSIES.include?(raw_value)
           false
+        else
+          nil
         end
       end
 
