@@ -12,8 +12,10 @@ Gem::Specification.new do |s|
   s.license     = "Private code that belongs to KUNDIGO SASU, FRANCE"
 
   s.required_ruby_version = ">= 2.2.2"
-  s.add_dependency "actionview", ">= 5.2"
-  s.add_dependency "railties", ">= 5.2"
+
+  s.add_dependency "rails", "> 5.2.3"
+
+  s.add_development_dependency "rspec-rails"
 
   s.files = %w(CHANGELOG.md README.md) + Dir.glob("lib/**/*")
 end
