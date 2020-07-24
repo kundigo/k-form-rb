@@ -15,6 +15,14 @@ namespace :k_form_rb do
        MODEL
     end
 
+    hammer.insert_into_file 'app/helpers/application_helper.rb', after: "module ApplicationHelper\n" do
+      <<~HELPER
+          def default_form_builder
+            KFormRb::FormBuilder
+          end
+      HELPER
+    end
+
     hammer.copy_file "examples/vuejs_forms_controller.js", "app/javascript/controllers/vuejs_forms_controller.js"
     hammer.run "yarn add git+https://kundigo-ci:2381bb4546b420a55d62592192be6e65c201bf06@github.com/kundigo/k-form-js.git#master"
   end
