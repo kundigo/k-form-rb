@@ -65,6 +65,14 @@ module KFormRb
       result.html_safe
     end
 
+    def monaco_editor(attribute, options = {})
+      result = original_text_area(attribute, options)
+      result.gsub!('<textarea ', '<k-monaco_editor ' )
+      result.gsub!( '/>', '></k-monaco_editor>')
+
+      result.html_safe
+    end
+
     # no-rspec
     def tag_name(method)
       "#{@object_name}[#{method}]"
