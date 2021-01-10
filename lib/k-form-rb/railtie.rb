@@ -23,6 +23,10 @@ module KFormRb
           prepend KFormRb::Errors::ToBuilder
         end
 
+        ActiveRecord::Migration.class_eval do
+          prepend KFormRb::Generators::Migration
+        end
+
         ActiveRecord::Type.register(:bool, KFormRb::Types::BoolType)
       end
     end
