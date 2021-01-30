@@ -4,8 +4,8 @@ module KFormRb
       extend ActiveSupport::Concern
 
       included do
-        attr_accessor :_prevent_save
-        define_attribute :_prevent_save, :bool
+        #attr_accessor :_prevent_save
+        ActiveRecord::Attributes::ClassMethods::define_attribute :_prevent_save, :bool
         after_save :force_rollback!, if: :_prevent_save
       end
 
