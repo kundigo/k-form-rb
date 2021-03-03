@@ -5,7 +5,7 @@ module KFormRb
       def to_builder
         Jbuilder.new do |json|
           json._is_valid self.empty?
-          self.keys.each do |attribute|
+          self.attribute_names.each do |attribute|
             json.set! attribute, self.full_messages_for(attribute).first
           end
         end
