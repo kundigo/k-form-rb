@@ -18,8 +18,9 @@ module KFormRb
         #   include KFormRb::Concerns::ValidateWithoutSaveConcern
         # end
 
+        ActiveModel::Error.singleton_class.prepend KFormRb::Errors::FullMessage
+
         ActiveModel::Errors.class_eval do
-          prepend KFormRb::Errors::FullMessage
           prepend KFormRb::Errors::ToBuilder
         end
 
