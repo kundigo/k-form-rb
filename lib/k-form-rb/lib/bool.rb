@@ -1,4 +1,3 @@
-# TODO : rename module
 module KFormRb
   module Lib
     class Bool

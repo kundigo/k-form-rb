@@ -2,7 +2,7 @@
 module KFormRb
   module Errors
     module FullMessage
-      def full_message(attribute, message, base)
+      def full_message(attribute, message)
         if message.start_with?('^')
           message[1..-1]
         else
