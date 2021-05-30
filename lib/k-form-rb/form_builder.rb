@@ -8,11 +8,20 @@ module KFormRb
     alias_method :original_date_field, :date_field
     alias_method :original_datetime_field, :datetime_field
     alias_method :original_check_box, :check_box
+    alias_method :original_submit, :submit
 
     def text_field(attribute, options = {})
       result = original_text_field(attribute, options)
       result.gsub!('<input ', '<k-input ' )
       result.gsub!( '/>', '></k-input>')
+
+      result.html_safe
+    end
+
+    def submit(value = nil, options = {})
+      result = original_submit(value, options)
+      result.gsub!('<input ', '<k-submit ' )
+      result.gsub!( '/>', '></k-submit>')
 
       result.html_safe
     end
