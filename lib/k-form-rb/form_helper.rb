@@ -6,7 +6,7 @@ module KFormRb
     #
     # we simply do a low level gsub of ""<form " and "</form>"
 
-    def bs4_vue_form_with(**options)
+    def bs4_vue_form_with(options, &block)
       unless respond_to?(:form_with)
         raise "Your Rails does not implement form_with helper."
       end
@@ -14,9 +14,9 @@ module KFormRb
 
       options[:builder] ||= KFormRb::FormBuilder
       result = if block_given?
-                 form_with(options, &Proc.new)
+                 form_with(**options, &block)
                else
-                 form_with(options)
+                 form_with(**options)
                end
 
       if form_tag_name
