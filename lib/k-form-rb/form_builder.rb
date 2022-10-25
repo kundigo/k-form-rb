@@ -134,6 +134,14 @@ module KFormRb
       result.html_safe
     end
 
+    def toggle(attribute, options = {})
+      result = original_text_field(attribute, options)
+      result.gsub!('<input ', '<k-toggle-switch ')
+      result.gsub!('/>', '></k-toggle-switch>')
+
+      result.html_safe
+    end
+
     # no-rspec
     def tag_name(method)
       "#{@object_name}[#{method}]"
