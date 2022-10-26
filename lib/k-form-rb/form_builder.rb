@@ -5,6 +5,7 @@ module KFormRb
     alias_method :original_date_field, :date_field
     alias_method :original_datetime_field, :datetime_field
     alias_method :original_hidden_field, :hidden_field
+    alias_method :original_label, :label
     alias_method :original_number_field, :number_field
     alias_method :original_select, :select
     alias_method :original_submit, :submit
@@ -68,6 +69,15 @@ module KFormRb
       result.html_safe
     end
 
+    def label(attribute, text = nil, options = {}, &block)
+
+      result = original_label(attribute, text, options, &block)
+      result.gsub!('<label ', '<k-label ')
+      result.gsub!('</label>', '</k-label>')
+
+      result.html_safe
+    end
+
     def number_field(attribute, options = {})
       result = original_number_field(attribute, options)
       result.gsub!('<input ', '<k-input ')
@@ -120,6 +130,14 @@ module KFormRb
       result = original_text_area(attribute, options)
       result.gsub!('<textarea ', '<k-quill_editor ')
       result.gsub!('/>', '></k-quill_editor>')
+
+      result.html_safe
+    end
+
+    def toggle(attribute, options = {})
+      result = original_text_field(attribute, options)
+      result.gsub!('<input ', '<k-toggle-switch ')
+      result.gsub!('/>', '></k-toggle-switch>')
 
       result.html_safe
     end
