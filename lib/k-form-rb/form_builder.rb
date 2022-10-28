@@ -142,6 +142,13 @@ module KFormRb
       result.html_safe
     end
 
+    def tel_input(attribute, options = {})
+      result = original_text_field(attribute, options)
+      result.gsub!('<input ', '<k-tel-input ' )
+      result.gsub!( '/>', '></k-tel-input>')
+      result.html_safe
+    end
+
     # no-rspec
     def tag_name(method)
       "#{@object_name}[#{method}]"
