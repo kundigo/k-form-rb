@@ -12,6 +12,7 @@ module KFormRb
         # we duplicate this logic for the warnings
         klass.class_attribute :_warning_validators, instance_writer: false, default: Hash.new { |h, k| h[k] = [] }
         klass.define_callbacks :validate_warnings, scope: [:name]
+        klass.define_callbacks :validation_warnings, scope: [:name]
         klass.extend ClassMethods
       end
 
@@ -61,8 +62,11 @@ module KFormRb
           singleton_class.define_method(:set_callback) do |name, *filter_list, &block|
             _super = set_callback_original.bind(self)
 
-            if name.to_sym == :validate
+            case name.to_sym
+            when :validate
               _super.call(:validate_warnings, *filter_list, &block)
+            when :validation
+              _super.call(:validation_warnings, *filter_list, &block)
             else
               _super.call(name, *filter_list, &block)
             end
