@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency "actionview", ">= 5.2"
   s.add_dependency "railties", ">= 5.2"
   s.add_dependency "dry-configurable"
+  s.add_dependency "site_prism"
 
   s.files = %w(CHANGELOG.md README.md) + Dir.glob("lib/**/*")
 end
