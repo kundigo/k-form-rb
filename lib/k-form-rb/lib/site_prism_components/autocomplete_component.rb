@@ -1,5 +1,3 @@
-require 'site_prism'
-
 module KFormRb
   module Lib
     module SitePrismComponents
