@@ -1,3 +1,5 @@
+# import this file directly in spec_helper
+
 require_relative 'site_prism_components/autocomplete_component'
 require_relative 'site_prism_components/checkbox_component'
 require_relative 'site_prism_components/date_component'
