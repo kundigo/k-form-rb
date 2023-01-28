@@ -9,6 +9,7 @@ require_relative 'site_prism_components/text_input_component'
 require_relative 'site_prism_components/toggle_switch_component'
 require_relative 'site_prism_components/quill_editor_component'
 require_relative 'site_prism_components/datetime_component'
+require_relative 'site_prism_components/time_component'
 
 module KFormRb
   module Lib
