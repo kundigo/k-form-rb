@@ -4,7 +4,7 @@ module KFormRb
     alias_method :original_check_box, :check_box
     alias_method :original_date_field, :date_field
     alias_method :original_datetime_field, :datetime_field
-    alias_method :original_time_field, :text_field
+    alias_method :original_time_field, :time_field
     alias_method :original_hidden_field, :hidden_field
     alias_method :original_label, :label
     alias_method :original_number_field, :number_field
