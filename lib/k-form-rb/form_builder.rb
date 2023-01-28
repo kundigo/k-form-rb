@@ -4,6 +4,7 @@ module KFormRb
     alias_method :original_check_box, :check_box
     alias_method :original_date_field, :date_field
     alias_method :original_datetime_field, :datetime_field
+    alias_method :original_time_field, :text_field
     alias_method :original_hidden_field, :hidden_field
     alias_method :original_label, :label
     alias_method :original_number_field, :number_field
@@ -25,7 +26,7 @@ module KFormRb
       result.gsub!(/<input[^<]*hidden[^<]*\/>/, '') # remove hiden field (it will be created again in vue JS)
       result.gsub!('<input ', '<k-check_box ')
       result.gsub!('/>', "  checked_value=\"#{checked_value}\" unchecked_value=\"#{unchecked_value}\"></k-check_box>")
-      result.gsub!(/ value="\w+"/, '')  # convention : the checked value property is named check_value instead of value
+      result.gsub!(/ value="\w+"/, '') # convention : the checked value property is named check_value instead of value
       result.html_safe
     end
 
@@ -144,14 +145,22 @@ module KFormRb
 
     def tel_input(attribute, options = {})
       result = original_text_field(attribute, options)
-      result.gsub!('<input ', '<k-tel-input ' )
-      result.gsub!( '/>', '></k-tel-input>')
+      result.gsub!('<input ', '<k-tel-input ')
+      result.gsub!('/>', '></k-tel-input>')
       result.html_safe
     end
 
     # no-rspec
     def tag_name(method)
       "#{@object_name}[#{method}]"
+    end
+
+    def time_field(attribute, options = {})
+      result = original_text_field(attribute, options)
+      result.gsub!('<input ', '<k-time ')
+      result.gsub!('/>', '></k-time>')
+
+      result.html_safe
     end
 
     # no-rspec
