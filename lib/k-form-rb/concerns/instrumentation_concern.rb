@@ -42,7 +42,7 @@ module KFormRb
         }
         model_key = self.class.model_name.i18n_key
 
-        ActiveSupport::Notifications.instrument "oscar.#{model_key}.#{action}", default_payload.merge(payload)
+        ActiveSupport::Notifications.instrument "botyglot.#{model_key}.#{action}", default_payload.merge(payload)
       end
     end
   end
