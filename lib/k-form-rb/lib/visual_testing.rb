@@ -5,10 +5,10 @@ module KFormRb
       setting :adapter
 
       class << self
-        def snapshot(*args, **kwargs, &block)
+        def snapshot(page, *args, **kwargs, &block)
           case config.adapter
           when :percy, 'percy'
-            Percy.snapshot(*args, **kwargs, &block)
+            page.percy_snapshot(*args, **kwargs, &block)
           when nil, ''
             # no visual testing adapter
           else
