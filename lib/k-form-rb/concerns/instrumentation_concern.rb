@@ -21,7 +21,6 @@ module KFormRb
       # Add instance methods (including actions) below this line.
       # You can define private instance methods as well.
 
-
       def instrument_create
         instrument_record_lifecyle("create")
       end
@@ -40,6 +39,8 @@ module KFormRb
           class: self.class.name,
           attributes: self.attributes,
         }
+
+        default_payload[:changes] = self.changes if action == "update"
         model_key = self.class.model_name.i18n_key
 
         ActiveSupport::Notifications.instrument "botyglot.#{model_key}.#{action}", default_payload.merge(payload)
