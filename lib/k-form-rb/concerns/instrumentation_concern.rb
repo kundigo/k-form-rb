@@ -38,9 +38,9 @@ module KFormRb
           id: self.id,
           class: self.class.name,
           attributes: self.attributes,
+          changes: self.previous_changes
         }
 
-        default_payload[:changes] = self.previous_changes if action == "update"
         model_key = self.class.model_name.i18n_key
 
         ActiveSupport::Notifications.instrument "botyglot.#{model_key}.#{action}", default_payload.merge(payload)
