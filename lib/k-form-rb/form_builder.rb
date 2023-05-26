@@ -54,6 +54,14 @@ module KFormRb
       result.html_safe
     end
 
+    def multi_check(attribute, options = {})
+      result = original_text_field(attribute, options)
+      result.gsub!('<input ', '<k-multi-check ')
+      result.gsub!('/>', '></k-multi-check>')
+
+      result.html_safe
+    end
+
     def datetime_field(attribute, options = {})
       result = original_text_field(attribute, options)
       result.gsub!('<input ', '<k-datetime ')
