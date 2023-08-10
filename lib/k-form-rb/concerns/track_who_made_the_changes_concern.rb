@@ -20,13 +20,13 @@
 
       def set_created_by
         if self.respond_to?(:created_by_id)
-          self.created_by ||= Current.user
+          self.created_by_id ||= Current.user.try(:id)
         end
       end
 
       def set_updated_by
         if self.respond_to?(:updated_by_id)
-          self.updated_by ||= Current.user
+          self.updated_by_id ||= Current.user.try(:id)
         end
       end
     end
