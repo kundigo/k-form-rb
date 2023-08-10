@@ -35,13 +35,20 @@ module KFormRb
       validation_url: nil,
       form_wrapper_options: nil,
       return_to: nil,
+      disable_validation: false,
+      hide_validation_errors: false,
+      initial_touch: false,
       **options,
       &block
     )
       # content_wrapper options
       validation_url = validation_url || url
       values = values || { model.singular_name => model.to_builder.attributes! }
+
       form_wrapper_options = form_wrapper_options || {}
+      form_wrapper_options['vuejs-forms-disable-validation-value'] = true if disable_validation
+      form_wrapper_options['vuejs-forms-hide-validation-errors-value'] = true if hide_validation_errors
+      form_wrapper_options['vuejs-forms-initial-touch-value'] = true if initial_touch
       # form options
       id = options.delete(:id) || (model.persisted? ? "edit_#{model.singular_name}_form_#{model.id}" : "new_#{model.singular_name}_form")
       klass = options.delete(:class) || "form #{model.singular_name}-form"
