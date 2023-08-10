@@ -26,5 +26,46 @@ module KFormRb
 
       result.html_safe
     end
+
+
+    def vuejs_form_with(
+      model:,
+      values: nil,
+      url: nil,
+      validation_url: nil,
+      form_wrapper_options: nil,
+      return_to: nil,
+      **options,
+      &block
+    )
+      # content_wrapper options
+      validation_url = validation_url || url
+      values = values || { model.singular_name => model.to_builder.attributes! }
+      form_wrapper_options = form_wrapper_options || {}
+      # form options
+      id = options.delete(:id) || (model.persisted? ? "edit_#{model.singular_name}_form_#{model.id}" : "new_#{model.singular_name}_form")
+      klass = options.delete(:class) || "form #{model.singular_name}-form"
+      content_tag :div,
+        data: {
+          controller: "vuejs-forms",
+          values: values,
+          validation_url: validation_url,
+          ** form_wrapper_options
+        } do
+
+        form =  bs4_vue_form_with(
+          model: model,
+          id: id,
+          class: klass,
+          url: url,
+          **options
+        ) do |form|
+          concat(hidden_field_tag :return_to, return_to) if return_to
+          concat(block.call(form)) if block_given?
+        end
+
+        concat(form)
+      end
+    end
   end
 end

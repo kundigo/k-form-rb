@@ -15,10 +15,25 @@ module KFormRb
         def hidrate(model_or_id)
           model_or_id.is_a?(self) ? model_or_id : self.find(model_or_id)
         end
+
+        def singular_name
+          model_name.singular
+        end
+
+        def plural_name
+          model_name.plural
+        end
       end
 
       # Add instance methods (including actions) below this line.
       # You can define private instance methods as well.
+      def singular_name
+        self.class.singular_name
+      end
+
+      def plural_name
+        self.class.plural_name
+      end
 
     end
   end
